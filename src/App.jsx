@@ -7,15 +7,12 @@ import { useSelector } from 'react-redux';
 import { getItems } from 'store/contacts/contacts';
 
 export const App = () => {
-
-const contacts = useSelector(getItems);
-
-console.log(contacts);
+  const contacts = useSelector(getItems);
 
   return (
     <Container>
       <h1>Phonebook</h1>
-      <ContactForm  />
+      <ContactForm />
       <h2>Contacts</h2>
       <Filter />
       {contacts.length > 0 ? (
