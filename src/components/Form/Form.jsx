@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { Formik, ErrorMessage } from 'formik';
 import shortid from 'shortid';
 import * as yup from 'yup';
@@ -9,18 +8,32 @@ import {
   ErrorText,
 } from './Form.styled';
 import { Button } from 'components/common/Button.styled';
+import { useSelector, useDispatch } from 'react-redux';
+import { getItems } from 'store/contacts/contacts';
+import { addContact } from 'store/contacts/contacts';
 
 const mySchema = yup.object().shape({
   name: yup.string().min(2).required('Name is required'),
   number: yup.string().length(7).required('Number is required'),
 });
 
-export const ContactForm = ({onSubmit}) => {
+export const ContactForm = () => {
+  const dispatch = useDispatch();
+  const items = useSelector(getItems);
+
+  console.log(items);
+
   const normalizedNumber = str => {
     const normalizedNumber =
       str[0] + str[1] + str[2] + '-' + str[3] + str[4] + '-' + str[5] + str[6];
     return normalizedNumber;
   };
+
+  const contactsCheck = (name) => {
+    const result = name.name.toLowerCase()
+    const data = items.find(item => item.name.toLowerCase().includes(result))
+    return data;
+  }
 
   const handleSubmit = (values, { resetForm }) => {
     const newName = {
@@ -28,7 +41,13 @@ export const ContactForm = ({onSubmit}) => {
       name: values.name,
       number: normalizedNumber(values.number),
     };
-    onSubmit(newName);
+    
+    if (contactsCheck(newName)) {
+      alert(`${newName.name} is already in contacts`)
+    } else {
+      dispatch(addContact(newName));
+    }
+    
     resetForm();
   };
 
@@ -77,8 +96,4 @@ export const ContactForm = ({onSubmit}) => {
       )}
     </Formik>
   );
-};
-
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
 };
