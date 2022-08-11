@@ -1,37 +1,16 @@
-import { useState, useEffect } from 'react';
 import { ContactForm } from 'components/Form/Form';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
 import { Notification } from 'components/common/Notification.styled';
 import { Container } from 'components/common/Container.styled';
-
-// const KEY = 'contacts';
+import { useSelector } from 'react-redux';
+import { getItems } from 'store/contacts/contacts';
 
 export const App = () => {
-//   const [contacts, setContacts] = useState(() => {
-//     return JSON.parse(localStorage.getItem(KEY) ?? []);
-//   });
-//   const [filter, setFilter] = useState('');
 
+const contacts = useSelector(getItems);
 
-//   const changeFilter = e => {
-//     setFilter(e.currentTarget.value);
-//   };
-
-//   const getFilteredContacts = () => {
-//     const normalizedContacts = filter.toLowerCase();
-//     return contacts.filter(contact =>
-//       contact.name.toLowerCase().includes(normalizedContacts)
-//     );
-//   };
-
-//   const deleteContact = id => {
-//     setContacts(prevContacts =>
-//       prevContacts.filter(contact => contact.id !== id)
-//     );
-//   };
-
-//   const filteredContacts = getFilteredContacts();
+console.log(contacts);
 
   return (
     <Container>
@@ -39,14 +18,11 @@ export const App = () => {
       <ContactForm  />
       <h2>Contacts</h2>
       <Filter />
-      {/* {contacts.length > 0 ? (
-        <ContactList
-          contacts={filteredContacts}
-          onDeleteContact={deleteContact}
-        />
+      {contacts.length > 0 ? (
+        <ContactList />
       ) : (
         <Notification>There are no contacts in the phone book.</Notification>
-      )} */}
+      )}
     </Container>
   );
 };
