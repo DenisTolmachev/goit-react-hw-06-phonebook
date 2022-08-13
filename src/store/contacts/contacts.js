@@ -29,7 +29,7 @@ const persistConfig = {
   storage,
 };
 
-export const SliceReducer = persistReducer(
+export default persistReducer(
   persistConfig,
   contactsSlice.reducer
 );
