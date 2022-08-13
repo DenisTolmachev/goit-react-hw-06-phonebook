@@ -15,9 +15,9 @@ export const ContactListItem = styled.li`
 export const ContactsListText = styled.p`
   margin: 0;
   width: 100%;
-  font-size: ${props => props.theme.fontSizes.ml};
+  font-size: ${({ theme }) => theme.fontSizes.ml};
   text-transform: capitalize;
-  color: ${props => props.theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.secondary};
 `;
 
 export const ContactsListButton = styled.button`

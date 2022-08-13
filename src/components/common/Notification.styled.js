@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Notification = styled.div`
-color: ${({ theme }) => theme.colors.secondary};
-    font-size: ${({ theme }) => theme.fontSizes.ml1};
+  color: ${({ theme }) => theme.colors.secondary};
+  font-size: ${({ theme }) => theme.fontSizes.ml1};
 `;

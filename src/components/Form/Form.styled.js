@@ -11,8 +11,8 @@ export const ContactFormLabel = styled.label`
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
-  font-weight: ${props => props.theme.fontWeights.bold};
-  color: ${props => props.theme.colors.secondary};
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
+  color: ${({ theme }) => theme.colors.secondary};
 `;
 
 export const ContactFormInput = styled(Field)`
@@ -20,7 +20,7 @@ export const ContactFormInput = styled(Field)`
   margin-top: 5px;
   padding: 5px;
   width: 200px;
-  font-size: ${props => props.theme.fontSizes.m};
+  font-size: ${({ theme }) => theme.fontSizes.m};
   border: none;
   border-radius: 3px;
   box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px -2px,
@@ -28,7 +28,7 @@ export const ContactFormInput = styled(Field)`
 `;
 
 export const ErrorText = styled.p`
-  font-weight: ${p => p.theme.fontWeights.normal};
+  font-weight: ${({ theme }) => theme.fontWeights.normal};
   font-size: 14px;
   color: red;
 `;
